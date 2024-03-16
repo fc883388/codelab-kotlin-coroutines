@@ -16,20 +16,17 @@
 
 package com.example.android.myktxlibrary
 
-import android.app.Activity
 import android.location.Location
-import android.widget.TextView
-import androidx.annotation.IdRes
+import com.google.android.gms.location.LocationRequest
 
-fun Activity.findAndSetText(@IdRes id: Int, text: String) {
-    findViewById<TextView>(id).text = text
+fun createLocationRequest() = LocationRequest.create().apply {
+    interval = 3000
+    fastestInterval = 2000
+    priority = LocationRequest.PRIORITY_HIGH_ACCURACY
 }
 
-fun Activity.showLocation(@IdRes id: Int, location: Location?) {
-    if (location != null) {
-        findAndSetText(id, location.toString())
-    } else {
-        findAndSetText(id, "Location unknown")
-    }
+fun Location.asString(format: Int = Location.FORMAT_DEGREES): String {
+    val latitude = Location.convert(latitude, format)
+    val longitude = Location.convert(longitude, format)
+    return TODO()
 }
-
